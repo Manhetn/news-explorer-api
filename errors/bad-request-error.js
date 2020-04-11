@@ -6,3 +6,5 @@ class BadRequestError extends Error {
 }
 
 module.exports = BadRequestError;
+
+// можно удалить

@@ -10,7 +10,7 @@ const articleCheckSchema = celebrate({
       "string.min": messages.article.keyword.minLength,
       "string.max": messages.article.keyword.maxLength,
     }),
-    title: textSchema.min(2).max(100).messages({
+    title: textSchema.min(2).max(150).messages({
       "string.empty": messages.article.title.empty,
       "string.min": messages.article.title.minLength,
       "string.max": messages.article.title.maxLength,
@@ -43,13 +43,13 @@ const articleCheckSchema = celebrate({
   }),
 });
 
-// const articleIdSchema = celebrate({
-//   params: Joi.object().keys({
-//     articleId: idSchema.messages(new Error(messages.article.id.length)),
-//   }),
-// });
+const articleIdSchema = celebrate({
+  params: Joi.object().keys({
+    id: idSchema.messages({ "string.length": messages.article.id.length }),
+  }),
+});
 
 module.exports = {
   articleCheckSchema,
-  // articleIdSchema,
+  articleIdSchema,
 };

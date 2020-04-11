@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
+const { messages } = require("../utils/messages");
+
 const articleSchema = new mongoose.Schema(
   {
     keyword: {
@@ -13,7 +15,7 @@ const articleSchema = new mongoose.Schema(
       type: String,
       required: true,
       minlength: 2,
-      maxlength: 100,
+      maxlength: 150,
     },
     text: {
       type: String,
@@ -37,8 +39,7 @@ const articleSchema = new mongoose.Schema(
       required: true,
       validate: {
         validator: (link) => validator.isURL(link),
-        message:
-          "Ссылка на картинку должна быть в формате: https://sun9-24.userapi.com/c630831/v630831668/33726/KNQZxpXt3jk.jpg",
+        message: messages.article.link.uri,
       },
     },
     image: {
@@ -46,8 +47,7 @@ const articleSchema = new mongoose.Schema(
       required: true,
       validate: {
         validator: (link) => validator.isURL(link),
-        message:
-          "Ссылка на картинку должна быть в формате: https://sun9-24.userapi.com/c630831/v630831668/33726/KNQZxpXt3jk.jpg",
+        message: messages.article.image.uri,
       },
     },
     owner: {

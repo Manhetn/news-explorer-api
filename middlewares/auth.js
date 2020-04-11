@@ -1,6 +1,6 @@
 const { verifyToken } = require("./token");
 const { messages } = require("../utils/messages");
-const UnauthorizedError = require("../errors/unauthorizedError"); // 401
+const UnauthorizedError = require("../errors/unauthorized-error"); // 401
 
 const auth = (req, res, next) => {
   const { token } = req.cookies;

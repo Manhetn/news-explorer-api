@@ -1,12 +1,11 @@
 const Article = require("../models/article");
 
-// const BadRequestError = require("../errors/badRequestError"); // 400
-const NotFoundError = require("../errors/notFoundError"); // 404
-const ForbiddenError = require("../errors/forbiddenError"); // 403
+const NotFoundError = require("../errors/not-found-error"); // 404
+const ForbiddenError = require("../errors/forbidden-error"); // 403
 
 const { messages } = require("../utils/messages");
 
-// создаёт карточку
+// создаём статью
 const createArticle = (req, res, next) => {
   const { keyword, title, text, date, source, link, image } = req.body;
   Article.create({
@@ -42,7 +41,7 @@ const readArticle = (req, res, next) => {
 const deleteArticle = (req, res, next) => {
   Article.findById(req.params.id)
     .select("+owner")
-    .orFail(() => new NotFoundError(messages.article.deleteArticle.noArticle))
+    .orFail(new NotFoundError(messages.article.deleteArticle.noArticle))
     .then((article) => {
       if (!article.owner.equals(req.user._id)) {
         throw new ForbiddenError(messages.article.deleteArticle.notMyArticle);

@@ -1,13 +1,12 @@
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/user");
-// const BadRequestError = require("../errors/badRequestError"); // 400
-const ConflictError = require("../errors/conflictError"); // 409
-// const NotFoundError = require("../errors/notFoundError"); // 404
-const UnauthorizedError = require("../errors/unauthorizedError"); // 401
 
-const { messages } = require("../utils/messages");
+const ConflictError = require("../errors/conflict-error"); // 409
+const UnauthorizedError = require("../errors/unauthorized-error"); // 401
+
 const { createToken } = require("../middlewares/token");
+const { messages } = require("../utils/messages");
 
 // создаёт пользователя
 const createUser = (req, res, next) => {

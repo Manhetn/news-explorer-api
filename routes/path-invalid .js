@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const NotFoundError = require("../errors/notFoundError"); // 404
+const NotFoundError = require("../errors/not-found-error"); // 404
 const { messages } = require("../utils/messages");
 
 router.all("*", (req, res, next) =>

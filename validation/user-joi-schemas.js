@@ -1,6 +1,7 @@
 const { Joi } = require("celebrate");
+
 const { messages } = require("../utils/messages");
-// схема email
+
 const emailSchema = Joi.string().required().email().messages({
   "string.empty": messages.user.email.empty,
   "string.email": messages.user.email.format,

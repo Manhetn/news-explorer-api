@@ -1,23 +1,19 @@
 const router = require("express").Router();
 
-const auth = require("../middlewares/auth.js");
-// const { idVerification } = require("../middlewares/idVerification.js");
+// const auth = require("../middlewares/auth.js");
+const {
+  articleCheckSchema,
+  articleIdSchema,
+} = require("../validation/article-validation-celebrait");
 const {
   createArticle,
   readArticle,
-  // checkOwner,
   deleteArticle,
 } = require("../controllers/articles");
 
-const {
-  articleCheckSchema,
-  // articleIdSchema,
-} = require("../validation/article-validation-celebrait");
-
-router.use(auth);
-
-router.post("/articles", articleCheckSchema, createArticle);
-router.get("/articles", readArticle);
-router.delete("/articles/:id", deleteArticle);
+// router.use(auth);
+router.post("/", articleCheckSchema, createArticle);
+router.get("/", readArticle);
+router.delete("/:id", articleIdSchema, deleteArticle);
 
 module.exports = router;
