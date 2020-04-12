@@ -1,25 +1,22 @@
 require("dotenv").config();
 
-const {
-  NODE_ENV,
-  JWT_SECRET,
-  PORT = 3000,
-  DATABASE_URL = "mongodb://localhost:27017/newsdb",
-} = process.env;
-// Опции для mongoose, что бы обойти ошибки в связи с обновлением
 const mongooseOptions = {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
 };
-// DATABASE: NODE_ENV === 'production' ? MONGODB : 'mongodb://localhost:27017/portfolio',
 
+const { NODE_ENV, JWT_SECRET, PORT, DATABASE } = process.env;
+
+const dataBase =
+  NODE_ENV === "production" ? DATABASE : "mongodb://localhost:27017/newsdb";
 const secretKey = NODE_ENV === "production" ? JWT_SECRET : "secret-key";
+const port = NODE_ENV === "production" ? PORT : 3000;
 
 module.exports = {
+  dataBase,
+  port,
   secretKey,
-  PORT,
-  DATABASE_URL,
   mongooseOptions,
 };
