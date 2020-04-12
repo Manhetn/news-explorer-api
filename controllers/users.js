@@ -18,6 +18,7 @@ const createUser = (req, res, next) => {
       name,
     })
       .then((user) => {
+        console.log(user);
         res.status(201).send({
           user: {
             email: user.email,
@@ -34,6 +35,7 @@ const createUser = (req, res, next) => {
       });
   });
 };
+// login
 const login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
