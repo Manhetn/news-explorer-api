@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const { messages } = require("../utils/messages");
-
+// схема польщователя
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
   },
   { versionKey: false }
 );
-
+// поиск пользователя по данным, для авторизации
 userSchema.statics.findUserByCredentials = function (email, password) {
   return this.findOne({ email })
     .select("+password")
@@ -51,7 +51,7 @@ userSchema.statics.findUserByCredentials = function (email, password) {
       });
     });
 };
-
+// уникальность email
 userSchema.plugin(uniqueValidator, {
   message: `{VALUE} ${messages.user.email.isBusy}`,
 });

@@ -1,12 +1,7 @@
 const winston = require("winston");
 const expressWinston = require("express-winston");
-
 // логер запросов
-const requestLogger = expressWinston.logger({
+module.exports.requestLogger = expressWinston.logger({
   transports: [new winston.transports.File({ filename: "request.log" })],
   format: winston.format.json(),
 });
-
-module.exports = {
-  requestLogger,
-};

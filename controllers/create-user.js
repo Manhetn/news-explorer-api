@@ -2,9 +2,8 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../models/user");
 const ConflictError = require("../errors/conflict-error"); // 409
-
 // создаёт пользователя
-const createUser = (req, res, next) => {
+module.exports.createUser = (req, res, next) => {
   const { email, password, name } = req.body;
   bcrypt.hash(password, 10).then((hash) => {
     User.create({
@@ -28,8 +27,4 @@ const createUser = (req, res, next) => {
         }
       });
   });
-};
-
-module.exports = {
-  createUser,
 };

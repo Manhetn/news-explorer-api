@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const {
   registrationCheckSchema,
-} = require("../validation/user-validation-celebrait");
+} = require("../validation/registration-check-schema");
 const { createUser } = require("../controllers/create-user");
 
 router.post("/", registrationCheckSchema, createUser);

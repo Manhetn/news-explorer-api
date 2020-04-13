@@ -1,6 +1,6 @@
 const Article = require("../models/article");
 // создаём статью
-const createArticle = (req, res, next) => {
+module.exports.createArticle = (req, res, next) => {
   const { keyword, title, text, date, source, link, image } = req.body;
   Article.create({
     keyword,
@@ -24,8 +24,4 @@ const createArticle = (req, res, next) => {
       })
     )
     .catch((err) => next(err));
-};
-
-module.exports = {
-  createArticle,
 };

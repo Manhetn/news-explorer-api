@@ -1,12 +1,9 @@
 const User = require("../models/user");
-
 const UnauthorizedError = require("../errors/unauthorized-error"); // 401
-
 const { createToken } = require("../middlewares/token");
 const { messages } = require("../utils/messages");
-
 // login
-const loginUser = (req, res, next) => {
+module.exports.loginUser = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
@@ -22,8 +19,4 @@ const loginUser = (req, res, next) => {
     .catch((error) => {
       next(new UnauthorizedError(`${error.message}`));
     });
-};
-
-module.exports = {
-  loginUser,
 };

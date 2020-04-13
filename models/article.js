@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const { messages } = require("../utils/messages");
-
+// схема статьи
 const articleSchema = new mongoose.Schema(
   {
     keyword: {

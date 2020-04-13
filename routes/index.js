@@ -8,14 +8,14 @@ const limiter = require("../middlewares/limiter");
 const { requestLogger } = require("../middlewares/request-logger");
 const registration = require("./registration-user");
 const login = require("./login-user");
-const auth = require("../middlewares/auth");
+const { auth } = require("../middlewares/auth");
 const readUser = require("./read-user");
 const creatAarticle = require("./create-article");
 const readArticles = require("./read-articles");
 const deleteArticle = require("./delete-article");
 const pathInvalid = require("./path-invalid ");
 const { errorLogger } = require("../middlewares/error-logger");
-const errorHandler = require("../middlewares/error-handler");
+const { errorHandler } = require("../middlewares/error-handler");
 
 router.use(helmet());
 router.use(bodyParser.json());

@@ -1,8 +1,8 @@
+const UnauthorizedError = require("../errors/unauthorized-error"); // 401
 const { verifyToken } = require("./token");
 const { messages } = require("../utils/messages");
-const UnauthorizedError = require("../errors/unauthorized-error"); // 401
-
-const auth = (req, res, next) => {
+// Авторизация
+module.exports.auth = (req, res, next) => {
   const { token } = req.cookies;
   if (!token) {
     return next(
@@ -18,5 +18,3 @@ const auth = (req, res, next) => {
   req.user = payload;
   return next();
 };
-
-module.exports = auth;

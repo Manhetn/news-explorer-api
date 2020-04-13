@@ -1,58 +1,69 @@
-const messages = {
+module.exports.messages = {
   user: {
     email: {
-      empty: "email обязательное поле",
+      required: "email обязательное поле",
+      empty: "email не может быть пустым",
       format: "email должен быть в формате: sega@yandex.ru",
       isBusy: "уже занят",
     },
     password: {
-      empty: "password обязательное поле",
+      required: "password обязательное поле",
+      empty: "password не может быть пустым",
       minLength: "password должен содержать не менее 8 символов",
     },
     name: {
-      empty: "name обязательное поле",
+      required: "name обязательное поле",
+      empty: "name не может быть пустым",
       minLength: "name должно содержать не менее 2 символов",
       maxLength: "name должно содержать не более 30 символов",
     },
   },
   article: {
     keyword: {
-      empty: "keyword обязательное поле",
+      required: "keyword обязательное поле",
+      empty: "keyword не может быть пустым",
       minLength: "keyword должно содержать не менее 2 символов",
       maxLength: "keyword должно содержать не более 30 символов",
     },
     title: {
-      empty: "title обязательное поле",
+      required: "title обязательное поле",
+      empty: "title не может быть пустым",
       minLength: "title должно содержать не менее 2 символов",
       maxLength: "title должно содержать не более 150 символов",
     },
     text: {
-      empty: "text обязательное поле",
+      required: "text обязательное поле",
+      empty: "text не может быть пустым",
       minLength: "text должно содержать не менее 2 символов",
     },
     date: {
-      empty: "date обязательное поле",
+      required: "date обязательное поле",
+      empty: "date не может быть пустым",
       minLength:
         "date должно содержать не менее 8 символов, желатеьно в формате: 01 месяц, 2020",
       maxLength: "date должно содержать не более 30 символов",
     },
     source: {
-      empty: "source обязательное поле",
+      required: "source обязательное поле",
+      empty: "source не может быть пустым",
       minLength: "source должно содержать не менее 2 символов",
       maxLength: "source должно содержать не более 30 символов",
     },
     link: {
-      empty: "link статьи обязательное поле",
+      required: "link обязательное поле",
+      empty: "Поле link не может быть пустым",
       uri:
         "Ссылка на статью должна быть в формате: https://sega.org/sega/%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F",
     },
     image: {
-      empty: "Ссылка на image обязательное поле",
+      required: "image обязательное поле",
+      empty: "Поле image не может быть пустым",
       uri:
         "Ссылка на image должна быть в формате: https://sega/c630831/KNQZxpXt3jk.jpg",
     },
     owner: {
-      empty: "owner обязательное поле",
+      required: "owner обязательное поле",
+      empty: "owner не может быть пустым",
       length: "owner должно содержать 24 символа",
     },
     deleteArticle: {
@@ -73,8 +84,5 @@ const messages = {
   path: {
     invalid: "Запрашиваемый ресурс не найден",
   },
-};
-
-module.exports = {
-  messages,
+  errorServer: "На сервере произошла ошибка",
 };
