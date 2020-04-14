@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-const { loginCheckSchema } = require("../validation/login-check-schema");
-const { loginUser } = require("../controllers/login-user");
+const { loginCheckSchema } = require("../validation/user-check-schemas");
+const { loginUser } = require("../controllers/users");
 
 router.post("/", loginCheckSchema, loginUser);
 

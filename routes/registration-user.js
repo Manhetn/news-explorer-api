@@ -1,9 +1,7 @@
 const router = require("express").Router();
 
-const {
-  registrationCheckSchema,
-} = require("../validation/registration-check-schema");
-const { createUser } = require("../controllers/create-user");
+const { registrationCheckSchema } = require("../validation/user-check-schemas");
+const { createUser } = require("../controllers/users");
 
 router.post("/", registrationCheckSchema, createUser);
 

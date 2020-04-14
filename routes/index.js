@@ -5,16 +5,13 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const limiter = require("../middlewares/limiter");
-const { requestLogger } = require("../middlewares/request-logger");
+const { requestLogger, errorLogger } = require("../middlewares/logger");
 const registration = require("./registration-user");
 const login = require("./login-user");
 const { auth } = require("../middlewares/auth");
 const readUser = require("./read-user");
-const creatAarticle = require("./create-article");
-const readArticles = require("./read-articles");
-const deleteArticle = require("./delete-article");
+const articles = require("./articles");
 const pathInvalid = require("./path-invalid ");
-const { errorLogger } = require("../middlewares/error-logger");
 const { errorHandler } = require("../middlewares/error-handler");
 
 router.use(helmet());
@@ -28,9 +25,7 @@ router.use("/signup", registration);
 router.use("/signin", login);
 router.use(auth);
 router.use("/users", readUser);
-router.use("/articles", creatAarticle);
-router.use("/articles", readArticles);
-router.use("/articles", deleteArticle);
+router.use("/articles", articles);
 router.use("*", pathInvalid);
 
 router.use(errorLogger);

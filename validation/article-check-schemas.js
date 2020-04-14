@@ -1,9 +1,11 @@
 const { celebrate, Joi } = require("celebrate");
 
 const { messages } = require("../utils/messages");
-const { textSchema } = require("./joi-schemas/text-schema");
-const { linkSchema } = require("./joi-schemas/link-schema");
-const { idSchema } = require("./joi-schemas/id-schema");
+const {
+  textSchema,
+  linkSchema,
+  idSchema,
+} = require("./joi-schemas/article-joi-schema");
 // схема проверки данных стаьти
 module.exports.articleCheckSchema = celebrate({
   body: Joi.object().keys({
@@ -50,5 +52,11 @@ module.exports.articleCheckSchema = celebrate({
       "string.empty": messages.article.owner.empty,
       "string.length": messages.article.owner.length,
     }),
+  }),
+});
+// схема проверки id стаьти
+module.exports.articleIdSchema = celebrate({
+  params: Joi.object().keys({
+    id: idSchema.messages({ "string.length": messages.article.id.length }),
   }),
 });
