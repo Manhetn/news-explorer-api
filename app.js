@@ -1,4 +1,4 @@
-const cors = require("cors");
+// const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -10,7 +10,7 @@ const app = express();
 
 mongoose.connect(dataBase, mongooseOptions);
 
-app.use(cors());
+// app.use(cors());
 
 app.use(routers);
 
