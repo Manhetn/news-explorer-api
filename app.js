@@ -10,6 +10,14 @@ const app = express();
 
 mongoose.connect(dataBase, mongooseOptions);
 
+app.use(
+  cors({
+    origin: ["http://localhost:8080", "*"],
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
+
 app.use(cors());
 
 app.use(routers);
