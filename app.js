@@ -1,4 +1,3 @@
-const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -10,15 +9,16 @@ const app = express();
 
 mongoose.connect(dataBase, mongooseOptions);
 
-app.use(
-  cors({
-    origin: ["http://localhost:8080", "*"],
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://interesting-news.tk");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
 
-app.use(cors());
+  next();
+});
 
 app.use(routers);
 
