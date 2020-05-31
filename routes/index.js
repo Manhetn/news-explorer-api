@@ -13,7 +13,9 @@ const readUser = require("./read-user");
 const articles = require("./articles");
 const pathInvalid = require("./path-invalid ");
 const { errorHandler } = require("../middlewares/error-handler");
+const cors = require("../middlewares/cors");
 
+router.use(cors);
 router.use(helmet());
 router.use(bodyParser.json());
 router.use(cookieParser());
