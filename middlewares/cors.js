@@ -2,7 +2,7 @@ const router = require("express").Router();
 const cors = require("cors");
 
 const corsOptions = {
-  origin: ["localhost:8080", "https://interesting-news.tk"],
+  origin: ["http://localhost:8080", "https://interesting-news.tk"],
   optionsSuccessStatus: 200,
   credentials: true,
 };
