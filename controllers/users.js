@@ -45,6 +45,7 @@ module.exports.loginUser = (req, res, next) => {
       res.status(200).send({
         statusCode: "200",
         message: messages.authorization.positiveResponse,
+        data: { name: user.name },
       });
     })
     .catch((error) => {
