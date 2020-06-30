@@ -17,13 +17,16 @@ module.exports.createArticle = (req, res, next) => {
   })
     .then((article) =>
       res.status(201).send({
-        keyword: article.keyword,
-        title: article.title,
-        text: article.text,
-        date: article.date,
-        source: article.source,
-        link: article.link,
-        image: article.image,
+        statusCode: "201",
+        data: {
+          keyword: article.keyword,
+          title: article.title,
+          text: article.text,
+          date: article.date,
+          source: article.source,
+          link: article.link,
+          image: article.image,
+        },
       })
     )
     .catch((err) => next(err));
@@ -31,7 +34,7 @@ module.exports.createArticle = (req, res, next) => {
 // получаем все статьи пользователя
 module.exports.readArticle = (req, res, next) => {
   Article.find({ owner: req.user._id })
-    .then((articles) => res.status(200).send({ articles }))
+    .then((articles) => res.status(200).send({ statusCode: "200", articles }))
     .catch((err) => next(err));
 };
 // удаляет статью по идентификатору
@@ -46,7 +49,10 @@ module.exports.deleteArticle = (req, res, next) => {
       return Article.deleteOne(article);
     })
     .then(() =>
-      res.send({ message: messages.article.deleteArticle.positiveResponse })
+      res.send({
+        statusCode: "200",
+        message: messages.article.deleteArticle.positiveResponse,
+      })
     )
     .catch((err) => next(err));
 };

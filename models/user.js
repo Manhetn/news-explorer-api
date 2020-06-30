@@ -53,7 +53,7 @@ userSchema.statics.findUserByCredentials = function (email, password) {
 };
 // уникальность email
 userSchema.plugin(uniqueValidator, {
-  message: `{VALUE} ${messages.user.email.isBusy}`,
+  message: `{VALUE}  ${messages.user.email.isBusy}`,
 });
 
 module.exports = mongoose.model("user", userSchema);

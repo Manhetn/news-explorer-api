@@ -16,6 +16,7 @@ module.exports.createUser = (req, res, next) => {
     })
       .then((user) => {
         res.status(201).send({
+          statusCode: "201",
           user: {
             email: user.email,
             name: user.name,
@@ -41,9 +42,11 @@ module.exports.loginUser = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
       });
-      res
-        .status(200)
-        .send({ message: messages.authorization.positiveResponse });
+      res.status(200).send({
+        statusCode: "200",
+        message: messages.authorization.positiveResponse,
+        data: { name: user.name },
+      });
     })
     .catch((error) => {
       next(new UnauthorizedError(`${error.message}`));
@@ -53,7 +56,20 @@ module.exports.loginUser = (req, res, next) => {
 module.exports.readUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
-      res.status(200).send({ name: user.name, email: user.email });
+      res.status(200).send({
+        statusCode: "200",
+        data: { name: user.name, email: user.email },
+      });
     })
     .catch((error) => next(error));
+};
+// Разлогинились
+module.exports.logout = (req, res, next) => {
+  res.clearCookie("jwt", {
+    httpOnly: true,
+  });
+
+  res
+    .status(200)
+    .send({ statusCode: "200", message: messages.logout.isSuccess });
 };

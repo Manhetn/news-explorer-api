@@ -8,12 +8,15 @@ const limiter = require("../middlewares/limiter");
 const { requestLogger, errorLogger } = require("../middlewares/logger");
 const registration = require("./registration-user");
 const login = require("./login-user");
+const logout = require("./logout");
 const { auth } = require("../middlewares/auth");
 const readUser = require("./read-user");
 const articles = require("./articles");
 const pathInvalid = require("./path-invalid ");
 const { errorHandler } = require("../middlewares/error-handler");
+const cors = require("../middlewares/cors");
 
+router.use(cors);
 router.use(helmet());
 router.use(bodyParser.json());
 router.use(cookieParser());
@@ -23,6 +26,7 @@ router.use(requestLogger);
 
 router.use("/signup", registration);
 router.use("/signin", login);
+router.use("/logout", logout);
 router.use(auth);
 router.use("/users", readUser);
 router.use("/articles", articles);

@@ -81,6 +81,9 @@ module.exports.messages = {
     needAuthorization: "Необходима авторизация",
     badToken: "С токеном что-то не так",
   },
+  logout: {
+    isSuccess: "Вы успешно разлогинились",
+  },
   path: {
     invalid: "Запрашиваемый ресурс не найден",
   },
